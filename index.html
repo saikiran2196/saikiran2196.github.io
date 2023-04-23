@@ -51,16 +51,20 @@
             "    #course = {intelligent_systems, cryptography}.\n" +
             "    #gender = {male, female}.\n" +
             "    #building = {holden_hall, biology}.\n" +
-            "    #ta = {liyuan_gao,abiola_samuel}.\n" +
+            "    #ta = {liyuan_gao,abiola_samuel,gyp}.\n" +
+            "    #day = {monday, tuesday, wednesday, thursday, friday}.\n"+
             "predicates\n" +
             "    advisor(#professor, #people).\n" +
             "    course(#course, #people).\n" +
             "    professor(#professor,#course).\n" +
             "    gender(#gender,#people).\n" +
             "    location(#building,#course).\n"+
-            "    enrolled(#course,#people).\n" +
+            "    enrolled(#people,#course).\n" +
             "    teachingassistant(#ta,#course).\n"+
-
+            //"    timings(#day,#day,#day,#course).\n"+
+             "    timings(#day,#course).\n"+
+            // "    issameteachingassistant(#course,#course).\n"+
+            "    day(#day).\n"+
             "rules\n" +
             
             "    course(intelligent_systems, kiran).\n"+
@@ -68,14 +72,19 @@
             "    course(intelligent_systems, bharat).\n"+
             "    course(intelligent_systems, nomi).\n"+
             "    course(intelligent_systems, peter).\n"+
+
             "    course(cryptography, kiran).\n" +
             "    course(cryptography, rohith).\n" +
             "    course(cryptography, bharat).\n" +
             "    course(cryptography, nomi).\n" +
+
             "    teachingassistant(liyuan_gao,intelligent_systems).\n" +
             "    teachingassistant(abiola_samuel,intelligent_systems ).\n" +
+            "    teachingassistant(gyp,cryptography).\n" +
+
             "    professor(zhang,intelligent_systems).\n" +
             "    professor(abdul_serwada,cryptography).\n" +
+
             "    advisor(zhang, rohith) :- course(intelligent_systems, rohith), professor(zhang,intelligent_systems).\n" +
             "    advisor(zhang, kiran) :- course(intelligent_systems, kiran), professor(zhang,intelligent_systems).\n" +
             "    advisor(zhang, bharat) :- not course(intelligent_systems, bharat), professor(zhang,intelligent_systems).\n" +
@@ -84,10 +93,32 @@
             "    advisor(abdul_serwada, kiran) :- course(cryptography, kiran), professor(abdul_serwada,cryptography).\n" +
             "    advisor(abdul_serwada, bharat) :- course(cryptography, bharat), professor(abdul_serwada,cryptography).\n" +
             "    advisor(abdul_serwada, nomi) :- course(cryptography, nomi), professor(abdul_serwada,cryptography).\n" +
-           // "    enrolled(intelligent_systems,x):- course(intelligent_systems,x).\n"+
-           //"     enrolled(x,kiran):- course(intelligent_systems, kiran), course(cryptography, kiran) .\n"+
+
+            "    enrolled(kiran,intelligent_systems):- course(intelligent_systems,kiran).\n"+
+            "    enrolled(rohith,intelligent_systems):- course(intelligent_systems,rohith).\n"+
+            "    enrolled(bharat,intelligent_systems):- course(intelligent_systems,bharat).\n"+
+            "    enrolled(nomi,intelligent_systems):- course(intelligent_systems,nomi).\n"+
+            "    enrolled(peter,intelligent_systems):- course(intelligent_systems,peter).\n"+
+
+            "    enrolled(kiran,cryptography):- course(cryptography,kiran).\n"+
+            "    enrolled(rohith,cryptography):- course(cryptography,rohith).\n"+
+            "    enrolled(bharat,cryptography):- course(cryptography,bharat).\n"+
+            "    enrolled(nomi,cryptography):- course(cryptography,nomi).\n"+
+
             "    location(holden_hall,intelligent_systems).\n"+
             "    location(biology,cryptography).\n"+
+
+            "    day(monday).\n"+
+            "    day(wednesday).\n"+
+            "    day(friday).\n"+
+            "    timings(monday,intelligent_systems).\n"+
+            "    timings(friday,intelligent_systems).\n"+
+            "    timings(wednesday,intelligent_systems).\n"+
+            "    timings(tuesday,cryptography).\n"+
+            "    timings(thursday,cryptography).\n"+
+
+            //"    issameteachingassistant(intelligent_systems,cryptography) :- teachingassistant(liyuan_gao,intelligent_systems),teachingassistant(gyp,cryptography), intelligent_systems != cryptography.\n"+
+
             "    gender(male,rohith).\n" +
             "    gender(male,kiran).\n" +
             "    gender(male,bharat).\n" +
